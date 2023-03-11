@@ -1,0 +1,100 @@
+#: include Screens/Nu.kv
+#: include Screens/Liverpool.kv
+#: include Screens/LikeU.kv
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#cfe2f3"
+    text_color: "#4da6ff"
+    selected_color: "#2196f3"
+
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4da6ff"
+    icon_color: "#4da6ff"
+    focus_behavior: False
+    selected_color: "#0d47a1"
+    _no_ripple_effect: True
+
+MDNavigationLayout:
+    id: nav_layout
+
+
+    MDScreenManager:
+        Screen:
+            BoxLayout:
+                orientation: "vertical"
+
+                # region toolbar bottom with info bank card
+                MDBottomAppBar:
+                    md_bg_color: '#1565c0'
+                    MDTopAppBar:
+                        title: "Nu -> $$$$ | likeU A -> $$$$ | likeU D-> $$$ | liverpool -> $$$$"
+                        icon: "store-plus"
+                        type: "bottom"
+                        specific_text_color: '#FFFFFF'
+                        icon_color: '#4da6ff'
+                        mode: "end"
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open"),"Open options menu"]]
+                # endregion toolbar bottom with info bank card
+
+                MDScreenManager:
+                    id: screen_manager
+
+                    LikeU:
+                        id: LikeU
+                        name: "LikeU"
+
+                    Nu:
+                        id: Nu
+                        name: "Nu"
+
+                    Liverpool:
+                        id: Liverpool
+                        name: "Liverpool"
+
+
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        radius: (0, 16, 16, 0)
+
+        MDNavigationDrawerMenu:
+
+            MDNavigationDrawerHeader:
+                title: "Menu"
+                text: "Screens by banks"
+                spacing: "4dp"
+                padding: "12dp", 0, 0, "56dp"
+
+            MDNavigationDrawerLabel:
+                text: "Installment purchases by bank"
+
+            DrawerClickableItem:
+                name: "LikeU"
+                icon: "alpha-s"
+                text: "Santander LikeU"
+                right_text: "1"
+                on_press:
+                    screen_manager.current = "LikeU"
+                    nav_drawer.set_state ()
+
+            DrawerClickableItem:
+                name: "Nu"
+                icon: "alpha-n"
+                text: "Nu"
+                right_text: "1"
+                on_press:
+                    screen_manager.current = "Nu"
+                    nav_drawer.set_state ()
+
+            DrawerClickableItem:
+                name: "Liverpool"
+                icon: "alpha-l"
+                text: "Liverpool"
+                right_text: "1"
+                on_press:
+                    screen_manager.current = "Liverpool"
+                    nav_drawer.set_state ()
+
+            #MDNavigationDrawerDivider:
